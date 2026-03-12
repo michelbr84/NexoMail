@@ -1,0 +1,22 @@
+{
+  "name": "@nexomail/ai",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@nexomail/db": "workspace:*",
+    "@nexomail/email": "workspace:*",
+    "ai": "^4.1.46",
+    "@ai-sdk/anthropic": "^1.1.9",
+    "@anthropic-ai/sdk": "^0.36.3",
+    "openai": "^4.77.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@nexomail/tsconfig": "workspace:*",
+    "@types/node": "^22.10.7",
+    "typescript": "^5.7.3"
+  }
+}

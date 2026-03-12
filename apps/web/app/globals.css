@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ───────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* Shadcn UI / Radix UI CSS variable mappings */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
+
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 243 75% 59%;
+
+    --radius: 0.5rem;
+
+    /* NexoMail semantic tokens — light */
+    --nm-bg: #ffffff;
+    --nm-surface: #f8f8f8;
+    --nm-surface-2: #f0f0f0;
+    --nm-border: #e5e5e5;
+    --nm-text: #0f0f0f;
+    --nm-text-muted: #6b7280;
+    --nm-primary: #4f46e5;
+    --nm-primary-fg: #ffffff;
+    --nm-destructive: #ef4444;
+    --nm-sidebar-bg: #fafafa;
+    --nm-sidebar-border: #ebebeb;
+  }
+
+  .dark {
+    /* Shadcn UI / Radix UI CSS variable mappings — dark */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 220 9% 62%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 243 75% 59%;
+
+    /* NexoMail semantic tokens — dark */
+    --nm-bg: #0f0f0f;
+    --nm-surface: #1a1a1a;
+    --nm-surface-2: #242424;
+    --nm-border: #2e2e2e;
+    --nm-text: #fafafa;
+    --nm-text-muted: #9ca3af;
+    --nm-primary: #4f46e5;
+    --nm-primary-fg: #ffffff;
+    --nm-destructive: #ef4444;
+    --nm-sidebar-bg: #111111;
+    --nm-sidebar-border: #222222;
+  }
+}
+
+/* ─── Base styles ─────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* ─── Custom scrollbar ────────────────────────────────────────────────────── */
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+}
+
+/* ─── Keyframe animations ─────────────────────────────────────────────────── */
+
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInFromRight 0.25s ease-out forwards;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ─── NexoMail utility classes ────────────────────────────────────────────── */
+
+@layer components {
+  .nm-surface {
+    background-color: var(--nm-surface);
+    border-color: var(--nm-border);
+  }
+
+  .nm-surface-2 {
+    background-color: var(--nm-surface-2);
+    border-color: var(--nm-border);
+  }
+
+  .nm-sidebar {
+    background-color: var(--nm-sidebar-bg);
+    border-right: 1px solid var(--nm-sidebar-border);
+  }
+
+  .nm-text-muted {
+    color: var(--nm-text-muted);
+  }
+
+  /* Email list item hover state */
+  .email-item {
+    @apply transition-colors duration-100 cursor-pointer;
+  }
+
+  .email-item:hover {
+    background-color: var(--nm-surface);
+  }
+
+  .email-item.unread {
+    @apply font-semibold;
+  }
+}
