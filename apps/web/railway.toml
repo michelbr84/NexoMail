@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install --frozen-lockfile && pnpm turbo build --filter @nexomail/web..."
+
+[deploy]
+startCommand = "pnpm --filter @nexomail/web start"
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 10
