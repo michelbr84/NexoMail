@@ -4,5 +4,5 @@ buildCommand = "pnpm install --frozen-lockfile && pnpm turbo build --filter @nex
 
 [deploy]
 startCommand = "pnpm --filter @nexomail/web start"
-restartPolicyType = "on-failure"
+restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
