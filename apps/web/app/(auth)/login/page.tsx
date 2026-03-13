@@ -13,8 +13,9 @@ export default function LoginPage() {
     setLoading(provider);
     try {
       await signIn.social({ provider, callbackURL: "/mail" });
-    } catch {
-      toast.error("Erro ao fazer login. Tente novamente.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      toast.error(`Erro ao fazer login: ${msg}`);
       setLoading(null);
     }
   };
