@@ -1,0 +1,11 @@
+node_modules
+.next
+apps/web/.next
+apps/api/dist
+postgres_data
+redis_data
+.env
+.env.local
+.env.production
+.env.staging
+refs/
